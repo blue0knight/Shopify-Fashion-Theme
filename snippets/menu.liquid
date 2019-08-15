@@ -6,63 +6,38 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav mx-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Shop
-              </a>
-              <div class="dropdown-menu full-width" aria-labelledby="navbarDropdown">
-                <div class="row">
-                  <div class="col-4">
-                    <div class="dropdown-header">Mens</div>
-                    <div class="dropdown-divider"></div>
-                    <a href="shop.html">Shirts</a>
-                    <a href="shop.html">Jeans</a>
-                    <a href="shop.html">Dress Pants</a>
-                    <a href="shop.html">Shoes</a>
-                    <a href="shop.html">Jackets</a>
-                  </div>
-                  <div class="col-4">
-                    <div class="dropdown-header">Womens</div>
-                    <div class="dropdown-divider"></div>
-                    <a href="shop.html">Dresses</a>
-                    <a href="shop.html">Leggings</a>
-                    <a href="shop.html">Skirts</a>
-                    <a href="shop.html">Coats</a>
-                    <a href="shop.html">Sweatshirts</a>
-                  </div>
-                  <div class="col-4">
-                    <div class="dropdown-header">Accessories</div>
-                    <div class="dropdown-divider"></div>
-                    <a href="shop.html">Watches</a>
-                    <a href="shop.html">Bracelets</a>
-                    <a href="shop.html">Necklaces</a>
-                    <a href="shop.html">Purses</a>
-                  </div>
-                </div>
-              </div>
-            </li>
+            {% for link in linklists[section.settings.main_linklist].links %}
+               <!-- if links has no child link -->
+              {% if link.links == blank %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="{{link.url}}">{{link.title}}</a>
+                </li>
+              {% endif %}
+               <!-- if links has child links -->
+              {% if link.links != blank %}
+                 <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      Shop
+                    </a>
+                    <div class="dropdown-menu full-width" aria-labelledby="navbarDropdown">
+                      <div class="row">
+                        {% for childlink in link.links %}
+                          <div class="col-4">
+                            <div class="dropdown-header">{{childlink.title}}</div>
+                            <div class="dropdown-divider"></div>
+                            <!-- if sublink has child links -->
+                            {% for sublink in childlink.links %}
+                              <a href="sublink.url">{{sublink.title}}</a>
+                            {% endfor %}
+                          </div>
+                        {% endfor %}
 
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Clearance
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <div class="dropdown-header">Items</div>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#">Watches</a>
-                <a class="dropdown-item" href="#">Bags</a>
-              </div>
-            </li>
+                      </div>
+                    </div>
+                  </li>
+              {% endif %}
 
-            <li class="nav-item">
-              <a class="nav-link" href="about.html">About Us</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="contact.html">Contact</a>
-            </li>
+            {% endfor %}
           </ul>
         </div>
       </nav>
