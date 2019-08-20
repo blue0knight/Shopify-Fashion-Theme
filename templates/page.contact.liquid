@@ -30,22 +30,30 @@
 
         <div class="contact-details col-md-6 ">
           <ul class="contact-short-info list-unstyled">
+            {% if settings.address != blank %}
             <li>
               <i class="fa fa-home"></i>
-              <span>Khaja Road, Bayzid, Chittagong, Bangladesh</span>
+              <span>{{ settings.address }}</span>
             </li>
+            {% endif %}
+            {% if settings.phone != blank %}
             <li>
               <i class="fa fa-mobile"></i>
-              <span>Phone: +880-31-000-000</span>
+              <span>{{ settings.phone }}</span>
             </li>
+            {% endif %}
+            {% if settings.fax != blank %}
             <li>
               <i class="fa fa-fax"></i>
-              <span>Fax: +880-31-000-000</span>
+              <span>{{ settings.fax }}</span>
             </li>
+            {% endif %}
+            {% if settings.email != blank %}
             <li>
               <i class="fa fa-envelope-o"></i>
-              <span>Email: hello@example.com</span>
+              <span>Email: {{ settings.email }}</span>
             </li>
+            {% endif %}
           </ul>
           <div class="social-icon">
             <ul>

@@ -45,7 +45,33 @@
         "label": "About Page Image"
       }
     ]
+  },
+  {
+    "name": "Contact Page",
+    "settings": [
+     {
+      "type": "text",
+      "id": "address",
+      "label": "Address"
+     },
+     {
+      "type": "text",
+      "id": "phone",
+      "label": "Phone Number"
+     },
+     {
+      "type": "text",
+      "id": "fax",
+      "label": "Fax Number"
+     },
+     {
+      "type": "text",
+      "id": "email",
+      "label": "Email"
+     }
+   ]
   }
+
 ]
 
 
